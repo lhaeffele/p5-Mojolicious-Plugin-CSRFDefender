@@ -1,5 +1,8 @@
 Revision history for Mojolicious::Plugin::CSRFDefender
 
+0.0.9    Fri Jul 19 12:28:33 UTC 2019
+        - Make it work under Mojolicious 8
+
 0.0.8    Sun May 26 22:36:54 2013
         - update tests for Mojolicious 4.0
 
