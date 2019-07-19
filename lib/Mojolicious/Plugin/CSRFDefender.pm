@@ -58,13 +58,13 @@ sub register {
     });
 
     # output filter
-    $app->hook(after_dispatch => sub {
-        my ($c) = @_;
+    $app->hook(after_render => sub {
+        my ($c, $content, $format) = @_;
         my $token = $self->_get_csrf_token($c);
         my $p_name = $self->parameter_name;
-        my $body = $c->res->body;
+        my $body = $$content;
         $body =~ s{(<form\s*[^>]*method=["']POST["'][^>]*>)}{$1\n<input type="hidden" name="$p_name" value="$token" />}isg;
-        $c->res->body($body);
+        $$content = $body;
     });
 
     return $self;
